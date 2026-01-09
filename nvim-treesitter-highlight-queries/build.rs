@@ -23,6 +23,7 @@ const LANGS: &[&str] = &[
     "graphql",
     "hare",
     "haskell",
+    "hcl",
     "heex",
     "html",
     "html_tags",

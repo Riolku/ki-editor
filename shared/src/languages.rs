@@ -37,6 +37,7 @@ pub fn languages() -> HashMap<String, Language> {
         ("graphql", graphql()),
         ("hare", hare()),
         ("heex", heex()),
+        ("hcl", hcl()),
         ("html", html()),
         ("idris", idris()),
         ("haskell", haskell()),
@@ -551,6 +552,22 @@ fn haskell() -> Language {
         }),
         line_comment_prefix: Some("--".to_string()),
         block_comment_affixes: Some(("{-".to_string(), "-}".to_string())),
+        ..Language::new()
+    }
+}
+
+fn hcl() -> Language {
+    Language {
+        extensions: to_vec(&["tf"]),
+        lsp_command: None,
+        lsp_language_id: None,
+        formatter: Some(Command::new("terraform", &["fmt", "-"])),
+        tree_sitter_grammar_config: Some(GrammarConfig {
+            id: "hcl".to_string(),
+            kind: GrammarConfigKind::CargoLinked(CargoLinkedTreesitterLanguage::Hcl),
+        }),
+        line_comment_prefix: Some("#".to_string()),
+        block_comment_affixes: None,
         ..Language::new()
     }
 }
