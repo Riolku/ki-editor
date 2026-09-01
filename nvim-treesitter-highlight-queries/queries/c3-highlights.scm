@@ -82,9 +82,7 @@
 ] @keyword
 
 [
-  "$alignof"
   "$assert"
-  "$assignable"
   "$case"
   "$default"
   "$defined"
@@ -96,30 +94,19 @@
   "$endif"
   "$endswitch"
   "$eval"
-  "$evaltype"
   "$error"
   "$exec"
-  "$extnameof"
   "$feature"
   "$for"
   "$foreach"
   "$if"
   "$include"
-  "$is_const"
-  "$nameof"
-  "$offsetof"
-  "$qnameof"
-  "$sizeof"
+  "$reflect"
   "$stringify"
   "$switch"
-  "$typefrom"
-  "$typeof"
-  "$vacount"
-  "$vatype"
-  "$vaconst"
+  "$Typefrom"
+  "$Typeof"
   "$vaarg"
-  "$vaexpr"
-  "$vasplat"
 ] @keyword.directive
 
 "assert" @keyword.debug
@@ -218,6 +205,8 @@
   "&&&"
   "+++"
   "|||"
+  "???"
+  "+++="
 ] @operator
 
 (range_expr
@@ -232,6 +221,7 @@
 (ternary_expr
   [
     "?"
+    "???"
     ":"
   ] @keyword.conditional.ternary)
 
@@ -268,8 +258,8 @@
     (#any-of? @variable.builtin
       "alignof" "associated" "elements" "extnameof" "from_ordinal" "get" "inf" "is_eq" "is_ordered"
       "is_substruct" "len" "lookup" "lookup_field" "max" "membersof" "methodsof" "min" "nan" "inner"
-      "kindof" "names" "nameof" "params" "paramsof" "parentof" "qnameof" "returns" "sizeof" "tagof"
-      "has_tagof" "values" "typeid")))
+      "kindof" "names" "nameof" "params" "paramsof" "parentof" "qnameof" "returns" "sizeof" "set"
+      "tagof" "has_tagof" "values" "typeid")))
 
 ; Label
 [
@@ -285,7 +275,7 @@
   (path_ident
     (ident) @module))
 
-(import_declaration
+(import_path
   (path_ident
     (ident) @module))
 
@@ -296,6 +286,9 @@
 (at_type_ident) @attribute
 
 (call_inline_attributes
+  (at_ident) @attribute)
+
+(type_suffix
   (at_ident) @attribute)
 
 (asm_block_stmt
